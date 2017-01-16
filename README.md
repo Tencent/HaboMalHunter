@@ -4,6 +4,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tencent/HaboMalHunter/pulls)
 [![Platform](https://img.shields.io/badge/Platform-Linux-brightgreen.svg)](https://github.com/Tencent/HaboMalHunter/wiki)
 
+([The English Version of README](README.en.md))
+
 ##功能描述
 
 HaboMalHunter是[哈勃分析系统 (https://habo.qq.com) ](https://habo.qq.com)的开源子项目，用于Linux平台下进行自动化分析、文件安全性检测的开源工具。使用该工具能够帮助安全分析人员简洁高效的获取恶意样本的静态和动态行为特征。分析报告中提供了进程、文件、网络和系统调用等关键信息。
