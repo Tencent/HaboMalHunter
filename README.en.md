@@ -36,7 +36,7 @@ The tool can be used for the static and dynamic analysis of ELF files on the Lin
 ##Screenshot
 1. The HTML report.
 
-![png20](https://cloud.githubusercontent.com/assets/717403/21969920/122a8876-dbdd-11e6-80d1-acaa66997a65.png)
+![png22](https://cloud.githubusercontent.com/assets/717403/21970024/c84605a4-dbdd-11e6-908f-a77fe0c3cc66.png)
 
 2. The JSON report.
 
