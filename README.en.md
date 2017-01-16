@@ -34,11 +34,18 @@ The tool can be used for the static and dynamic analysis of ELF files on the Lin
 7. syscall sequences.
 
 ##Screenshot
+1. The HTML report.
+
+![png20](https://cloud.githubusercontent.com/assets/717403/21969920/122a8876-dbdd-11e6-80d1-acaa66997a65.png)
+
+2. The JSON report.
+
+![png21](https://cloud.githubusercontent.com/assets/717403/21969936/279f3b16-dbdd-11e6-944f-5694bf41681e.png)
 
 ##Future Work
 1. Memory Analysis.
 2. More YARA rules (./utils/yara/malware/)
-3. HTML output format
+3. [Developing] HTML output format
 
 ##Errors and Issues
 1. Malware Analysis should be done inside a Virtual Machine enviroment and Intel-VT should be enabled on the host's BIOS. We shall not be liable to the damage of the analysed malware.
