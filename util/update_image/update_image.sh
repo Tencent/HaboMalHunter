@@ -76,21 +76,9 @@ apt-get clean all
 #modify /etc/wireshark/init.lua
 sed -i 's/run_user_scripts_when_superuser = false/run_user_scripts_when_superuser = true/' /etc/wireshark/init.lua
 sed -i '38irunning_superuser = false' /etc/wireshark/init.lua
-#build profile for volatility 
-cd /usr/src/volatility-tools/linux
-make
-ls -la
-cd -
-VOL_PROFILE_DIR='/usr/share/vol_profile/'
-mkdir -p $VOL_PROFILE_DIR
-cp /usr/src/volatility-tools/linux/module.dwarf $VOL_PROFILE_DIR
-cp /boot/System.map-`uname -r` $VOL_PROFILE_DIR
-profile_file='/usr/lib/python2.7/dist-packages/volatility/plugins/overlays/linux/Ubuntu1404.zip'
-rm -rf $profile_file
-zip /usr/lib/python2.7/dist-packages/volatility/plugins/overlays/linux/Ubuntu1404.zip $VOL_PROFILE_DIR/*
-vol.py --info | grep Linux
-echo "profile name: LinuxUbuntu1404x64"
 
+# vol
+bash ./update_vol_profile.sh
 # build lime
 download_url='https://github.com/504ensicsLabs/LiME/archive/v1.7.5.zip'
 dest_path='/usr/share/LiME'
