@@ -1,0 +1,58 @@
+/*
+Tencent is pleased to support the open source community by making HaboMalHunter available.
+Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
+Licensed under the MIT License (the "License"); you may not use this file except in 
+compliance with the License. You may obtain a copy of the License at
+
+http://opensource.org/licenses/MIT
+
+Unless required by applicable law or agreed to in writing, software distributed under the 
+License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+either express or implied. See the License for the specific language governing permissions 
+and limitations under the License.
+*/
+
+body, html {
+    padding: 0;
+    height: 100%;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    color: #333;
+    background-color: #fff;
+}
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li {
+    color: #333;
+}
+li {
+    line-height: 20px;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    margin: 0 auto -50px;
+}
+
+.footer {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='white', endColorstr='#F7F7F7');
+    background: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#f7f7f7)) repeat-x;
+    background: -moz-linear-gradient(center top,#fff,#f7f7f7) repeat-x;
+    background: -o-linear-gradient(top,#fff,#f7f7f7) repeat-x;
+}
+.footer, .push {
+    height: 50px;
+}
+
+
+.hide {
+    display: none;
+}

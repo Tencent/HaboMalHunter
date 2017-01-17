@@ -578,6 +578,16 @@ def generate_output_log(cfg, do_static, do_dynamic):
 			shutil.copyfile(main_dynamic, output_dynamic)
 		log.info("output dynamic logs %s have been generated", output_dynamic)
 
+def generate_html(cfg):
+	cwd = os.getcwd()
+	os.chdir('/root/util/log_to_html/')
+	output_dynamic = os.path.join(cfg.file_log_dir, cfg.dynamic_log)
+	cmd_log_line = ["/usr/bin/python","/root/util/log_to_html/Linux_Trim.py",output_dynamic]
+	subprocess.call(cmd_log_line)
+	cmd_html_line = ["/usr/bin/python","/root/util/log_to_html/log_to_html.py",cfg.file_log_dir,"-elf"]
+	subprocess.call(cmd_html_line)
+	os.chdir(cwd)
+
 def compress_log(cfg):
 	tmp_compressed_path = "/tmp/output.zip"
 	if os.path.exists(tmp_compressed_path):
@@ -648,10 +658,12 @@ def main(argc, argv):
 		# clean
 		if not cfg.is_inplace:
 			clean_temp(cfg.temp_list)
-		# zip all log file
-		compress_log(cfg)
 		# generate dynamic tag file
 		generate_tag_file(cfg,False, True)
+		# generate html file
+		generate_html(cfg)
+		# zip all log file
+		compress_log(cfg)
 	else:
 		# do static first
 		do_work(cfg, True, False)
@@ -663,10 +675,13 @@ def main(argc, argv):
 		# do both, dynamic needs static info
 		do_work(cfg, True, True)
 		generate_output_log(cfg, False, True)
-		# zip all log file
-		compress_log(cfg)
+		
 		# generate dynamic tag file
 		generate_tag_file(cfg,False, True)
+		# generate html file
+		generate_html(cfg)
+		# zip all log file
+		compress_log(cfg)
 	return 0
 
 if "__main__" == __name__ :
