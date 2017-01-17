@@ -985,6 +985,7 @@ class DynamicAnalyzer(base.BaseAnalyzer):
 		time_tick =0
 		is_terminated = False
 		self.time_info["dyn_pre_launch_time"] = time.time()
+		self.time_info["pre_launch_time_obj"] = datetime.datetime.utcnow()
 		while time_tick < time_limit_dynamic:
 			ret = p.poll()
 			if ret is None:
@@ -1028,10 +1029,96 @@ class DynamicAnalyzer(base.BaseAnalyzer):
 		self.stop_monitor()
 
 	def post_launch(self):
+		if self.cfg.enable_mem_analysis:
+			self.mem_analysis()
 		is_deleted = self.check_self_delete()
 		if not is_deleted:
 			is_modified = self.check_self_modified()
 			is_locked = self.check_file_locked()
+
+	def mem_analysis(self):
+		self.prepare_LiME()
+		self.prepare_vol()
+		self.mem_acquisition()
+		self.parse_mem()
+
+	def prepare_vol(self):
+		cmd = ['/bin/bash', self.cfg.update_vol_profile_path]
+		(output,ret) = self.check_output_ret_safe(cmd)
+		self.log.info("vol profile update: %s",output)
+
+	def prepare_LiME(self):
+		self.log.info("LiME src path: %s", self.cfg.lime_src_path)
+		cmd = ['/bin/uname', '-r']
+		(output,ret) = self.check_output_ret_safe(cmd)
+		if 0==ret:
+			self.cfg.kernel_version = output.strip()
+			self.log.info("kernel: %s", self.cfg.kernel_version)
+			cmd = ['/usr/bin/make', '-C', self.cfg.lime_src_path]
+			(output,ret) = self.check_output_ret_safe(cmd)
+			if 0==ret:
+				self.cfg.lime_ko_path =  os.path.join(self.cfg.lime_src_path,"lime-%s.ko"%(self.cfg.kernel_version))
+				self.log.info("lime ko path: %s", self.cfg.lime_ko_path)
+		else:
+			self.log.error("uname error: %s",output)
+
+	def mem_acquisition(self):
+		if os.path.exists(self.cfg.lime_ko_path):
+			cmd = ["/sbin/insmod",self.cfg.lime_ko_path,"path=%s format=lime"%(self.cfg.mem_dump_path)]
+			(output, ret) = self.check_output_ret_safe(cmd)
+			if 0==ret:
+				self.log.info("mem dump: %s",self.cfg.mem_dump_path)
+			else:
+				self.log.error("mem dump error: %s", output)
+		#rmmod
+		cmd = ['/sbin/rmmod', 'lime']
+		(output, ret) = self.check_output_ret_safe(cmd)
+		self.log.info("rmmod lime, ret=%d",ret)
+
+	def parse_mem(self):
+		self.vol_bash()
+		self.vol_pstree()
+
+	def vol_pstree(self):
+		cmd = ['/usr/bin/vol.py', '-f%s'%(self.cfg.mem_dump_path), '--profile=%s'%(self.cfg.vol_profile_name), 'linux_pstree']
+		(output, ret) = self.check_output_ret_safe(cmd)
+		self.log.info("vol_pstree:%s",output)
+		is_ok = (-1==output.find("No suitable")) # No suitable can not be found
+		if is_ok:
+			pass
+		else:
+			self.log.info("mem dump error, please try again")
+
+	def vol_bash(self):
+		cmd = ['/usr/bin/vol.py', '-f%s'%(self.cfg.mem_dump_path), '--profile=%s'%(self.cfg.vol_profile_name), 'linux_bash']
+		(output, ret) = self.check_output_ret_safe(cmd)
+		self.log.info("vol_bash:%s",output)
+		is_ok = (-1==output.find("No suitable")) # No suitable can not be found
+		if is_ok:
+			output_list = self.normalise(output.splitlines())
+			self.parse_vol_bash(output_list)
+		else:
+			self.log.info("mem dump error, please try again")
+
+	def parse_vol_bash(self, output_list):
+		enable_parse = False
+		pre_launch_time_obj = self.time_info["pre_launch_time_obj"]
+		pre_launch_time_obj =pre_launch_time_obj.replace(1900,1,1)
+		self.log.info("pre_launch_time_obj: %s",str(pre_launch_time_obj))
+		for line in output_list:
+			if enable_parse:
+				parts = line.split()
+				if len(parts) >=6:
+					pid = parts[0]
+					name = parts[1]
+					cmd_time_str = parts[3]
+					cmd_time_obj = datetime.datetime.strptime(cmd_time_str,"%H:%M:%S")
+					cmd = " ".join(parts[5:])
+					#self.log.info("vol_bash: %s %s",str(cmd_time_obj), cmd)
+					if cmd_time_obj >= pre_launch_time_obj:
+						self.log.info("[hit] vol_bash: %s",cmd)
+			if line.startswith("----"):
+				enable_parse=True
 
 	def check_file_locked(self):
 		file_path = self.cfg.target_abs_path

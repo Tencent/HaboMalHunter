@@ -131,6 +131,7 @@ def init_cfg(cfg_path, args):
 	cfg.is_inplace = strTobool(cfg.is_inplace)
 	cfg.enable_inetsim = strTobool(cfg.enable_inetsim)
 	cfg.enable_prefix_remove = strTobool(cfg.enable_prefix_remove)
+	cfg.enable_mem_analysis = strTobool(cfg.enable_mem_analysis)
 	return cfg
 
 def init_arguments(argv):

@@ -14,41 +14,22 @@
 
 #Author: 
 #Date:	August 18, 2016
-#Description: Linux Malware Analysis System : build test elf files
+#Description: Linux Malware Analysis System : update vol
 
 set -x
-#clean
-rm -rf bin
-rm -rf *.zip
-mkdir -p bin
 
-
-
-BIN_32_LIST="fork.c dns.c read.c write.c self_delete.c libc_file.c system.c"
-BIN_64_LIST="${BIN_32_LIST} http.c https.c"
-
-for source in $BIN_32_LIST; do
-	base=$(basename $source .c)
-	mod=32
-	cmd="gcc -m$mod -o bin/${base}.$mod.elf $source"
-	$cmd
-done
-
-for source in $BIN_64_LIST; do
-	base=$(basename $source .c)
-	mod=64
-	LD_FLAGS="-lcurl"
-	cmd="gcc -m$mod -o bin/${base}.$mod.elf $source $LD_FLAGS"
-	$cmd
-done
-
-#pack 32
-7z a -r test.32.zip bin/*.32.elf
-#pack 64
-7z a -r test.64.zip bin/*.64.elf
-#pack all
-7z a -r test.all.zip bin/
-#pack multi
-7z a -r test.mult.zip bin/
-7z a test.mult.zip *
-#end
+#build profile for volatility 
+cd /usr/src/volatility-tools/linux
+make
+ls -la
+cd -
+VOL_PROFILE_DIR='/usr/share/vol_profile/'
+rm -rf $VOL_PROFILE_DIR
+mkdir -p $VOL_PROFILE_DIR
+cp /usr/src/volatility-tools/linux/module.dwarf $VOL_PROFILE_DIR
+cp /boot/System.map-`uname -r` $VOL_PROFILE_DIR
+profile_file='/usr/lib/python2.7/dist-packages/volatility/plugins/overlays/linux/Ubuntu1404.zip'
+rm -rf $profile_file
+zip /usr/lib/python2.7/dist-packages/volatility/plugins/overlays/linux/Ubuntu1404.zip $VOL_PROFILE_DIR/*
+vol.py --info | grep Linux
+echo "profile name: LinuxUbuntu1404x64"
