@@ -8,7 +8,7 @@
 
 ##Introduction
 
-HaboMalHunter is a sub-project of [Habo Malware Analysis System (https://habo.qq.com)](https://habo.qq.com), which can be used for automated malware analysis and security assessment on the Linux system. The tool help security analyst extracting the static and dynamic features from malware effectively and efficiently. The generated report provides significant information about process, file I/O, network and system calls.
+HaboMalHunter is a sub-project of [Habo Malware Analysis System (https://habo.qq.com)](https://habo.qq.com), which can be used for automated malware analysis and security assessment on the Linux system. The tool help security analyst extracting the static and dynamic features from malware effectively and efficiently. The generated report provides significant information about process, file I/O, network and system calls. 
 
 ##Features
 
@@ -92,9 +92,9 @@ Among the result, `output.static` is static analysis result, `output.dynamic` is
 
 
 ##Future Work
-1. Memory Analysis.
+1. [done] Memory Analysis.
 2. More YARA rules (./utils/yara/malware/)
-3. [Developing] HTML output format
+3. [done] HTML output format
 
 ##Errors and Issues
 1. Malware Analysis should be done inside a Virtual Machine enviroment and Intel-VT should be enabled on the host's BIOS. We shall not be liable to the damage of the analysed malware.
@@ -181,9 +181,9 @@ cp ./log/output.zip /media/sf_Source/
 
 ##未来规划
 
-1. 希望使用volatility和LiME进行内存分析
+1. [已完成] 希望使用volatility和LiME进行内存分析
 2. 希望增加更多的病毒规则(./util/yara/malware)
-3. [开发中] 希望将输出的json数据格式转化成为HTML页面进行展示
+3. [已完成] 希望将输出的json数据格式转化成为HTML页面进行展示
 
 ##已知故障和错误列表
 
