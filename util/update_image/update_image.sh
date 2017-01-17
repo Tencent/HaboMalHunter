@@ -95,6 +95,19 @@ cp *.ko $dest_path/'lime.ko'
 cd ..
 cd -
 
+#install pyh.py
+download_url='https://codeload.github.com/ilovegit1998/pyh/zip/master'
+dest_path='/usr/share/pyh'
+dest_file='pyh.zip'
+unzip_dir='pyh-master'
+mkdir -p $dest_path
+cd $dest_path
+curl -o$dest_file -L $download_url
+unzip -o -qq $dest_file 
+cd $unzip_dir
+/usr/bin/python setup.py install
+
+
 # set timezone here
 rm -f /etc/localtime
 ln -s -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime

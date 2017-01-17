@@ -1,0 +1,32 @@
+clone系统调用,"Clone syscall, fork or vfork"
+装载新程序,Execute a file
+进程结束,Process exit
+发送信号，常用于杀死进程,Send signal
+获取自身进程ID,getpid
+fork创建进程,fork
+等待子进程结束,wait
+执行命令,system
+打开文件,File open
+读取文件,File read
+修改文件,File write
+删除文件,File remove
+重命名文件,File rename
+读文件夹,readdir
+自删除,Self delete
+自修改,Self modify
+自锁定,Lock file itself
+创建套接字,socket
+发送DNS请求,Query dns
+回复DNS请求,Respond dns
+发送HTTP请求,Send HTTP request
+回复HTTP请求,Reply HTTP request
+收发TCP数据包,TCP package
+收发HTTPS数据包,HTTPS package
+SSL证书信息,SSL certification
+收发UDP数据包,UDP package
+绑定监听地址和端口,bind
+加载动态链接库,dlopen
+导入动态链接库的函数,dlsym
+控制台格式化输出,printf
+控制台字符串输出,puts
+字符串操作,sprintf

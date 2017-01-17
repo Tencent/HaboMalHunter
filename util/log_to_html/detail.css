@@ -1,0 +1,99 @@
+/*
+Tencent is pleased to support the open source community by making HaboMalHunter available.
+Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
+Licensed under the MIT License (the "License"); you may not use this file except in 
+compliance with the License. You may obtain a copy of the License at
+
+http://opensource.org/licenses/MIT
+
+Unless required by applicable law or agreed to in writing, software distributed under the 
+License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+either express or implied. See the License for the specific language governing permissions 
+and limitations under the License.
+*/
+
+.extra-info h5 {
+    padding: 5px;
+    margin-top: 10px;
+    background: #ededed;
+    background: linear-gradient(to bottom,#fff 0,#f6f6f6 47%,#ededed 100%);
+    border: 1px solid #ededed;
+}
+div.frame {
+    border: 1px solid #eee;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 10px;
+}
+#behavioural-info, #item-detail {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+.enum {
+    padding: 3px;
+    border-bottom: dotted 1px #ddd;
+    word-wrap: break-word;
+}
+
+.row:after, .row:before {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.span8 {
+    width: 620px;
+}
+[class*=span] {
+    float: left;
+    min-height: 1px;
+    margin-left: 20px;
+}
+table td, table th {
+    padding: 8px 10px 9px;
+}
+#identification a, .enum a, .extra-info h5 a {
+    color: #777;
+}
+.extra-info h5 {
+    padding: 5px;
+    margin-top: 10px;
+    background: #ededed;
+    background: linear-gradient(to bottom,#fff 0,#f6f6f6 47%,#ededed 100%);
+    border: 1px solid #ededed;
+}
+
+div.enum:last-child {
+    border-bottom: 0;
+}
+.enum .floated-field-key {
+    width: 180px;
+    font-weight: 700;
+    float: left;
+}
+.enum .floated-field-value {
+    float: left;
+    max-width: 600px;
+    word-wrap: break-word;
+}
+li {
+	 list-style:none;
+}
+
+td p {
+	height:20px;
+	width:710px;
+	overflow:hidden;
+	margin:0;
+}
+.dtable th{
+	width:50%;
+	text-align:left;
+}
+.dtable .tdtitle{
+	width:80px;
+}
+.red{
+	color:red;
+}
