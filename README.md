@@ -47,6 +47,14 @@ The tool can be used for the static and dynamic analysis of ELF files on the Lin
 
 The tool will run on the VirtualBox 5.1 with Ubuntu 14.04 LTS.
 
+
+in order to install thrid party software, please execute the following command after obtaining the code:
+
+```bash
+root# cd ./util/update_image
+root# bash update_image.sh
+```
+
 ### 2.Get Source Code
 
 ```bash
@@ -137,6 +145,13 @@ HaboMalHunter是[哈勃分析系统 (https://habo.qq.com) ](https://habo.qq.com)
 ### 1.环境配置
 
 使用哈勃Linux开源版进行病毒分析，需要首先制作用于运行病毒的虚拟机环境。切勿直接在真实环境下运行和分析病毒。项目默认使用VirtualBox 5.1 运行Ubuntu 14.04 LTS 作为分析环境。
+
+安装相关的软件，获取源代码之后，请在虚拟机内以root身份运行如下命令：
+
+```bash
+root# cd ./util/update_image
+root# bash update_image.sh
+```
 
 ### 2.获取源代码
 
