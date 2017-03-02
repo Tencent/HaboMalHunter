@@ -1,6 +1,6 @@
 #HaboMalHunter: Habo Linux Malware Analysis System
 
-[![BlackHat](https://github.com/toolswatch/badges/blob/master/arsenal/2017.svg)](https://www.blackhat.com/asia-17/arsenal.html#habomalhunter-an-automated-malware-analysis-tool-for-linux-elf-files)
+[![BlackHat](https://raw.githubusercontent.com/toolswatch/badges/master/arsenal/2017.svg)](https://www.blackhat.com/asia-17/arsenal.html#habomalhunter-an-automated-malware-analysis-tool-for-linux-elf-files)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/Tencent/HaboMalHunter/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tencent/HaboMalHunter/pulls)
 [![Platform](https://img.shields.io/badge/Platform-Linux-brightgreen.svg)](https://github.com/Tencent/HaboMalHunter/wiki)
