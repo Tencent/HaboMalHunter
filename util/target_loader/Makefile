@@ -16,4 +16,5 @@ all:
 clean:
 	rm -rf *.o target_loader.*.elf	
 install:
+	mkdir -p ../../bin
 	cp ./target_loader.*.elf ../../bin/
