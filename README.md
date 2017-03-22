@@ -7,15 +7,15 @@
 
 (中文版本请参看[这里](#readme_cn))
 
-##Introduction
+## Introduction
 
 HaboMalHunter is a sub-project of [Habo Malware Analysis System (https://habo.qq.com)](https://habo.qq.com), which can be used for automated malware analysis and security assessment on the Linux system. The tool help security analyst extracting the static and dynamic features from malware effectively and efficiently. The generated report provides significant information about process, file I/O, network and system calls. 
 
-##Features
+## Features
 
 The tool can be used for the static and dynamic analysis of ELF files on the Linux x86/x64 platform.
 
-###Static analysis
+### Static analysis
 
 1. Basic Information: md5, name, file type, size and SSDEEP.
 2. SO Files Dependency: SO files information (only applied for dynamic linked files).
@@ -25,7 +25,7 @@ The tool can be used for the static and dynamic analysis of ELF files on the Lin
 6. ELF Segment, Section and Hash.
 7. Source File Names.
 
-###Dynamic analysis
+### Dynamic analysis
 1. Starting and Termination: Time Stamps and Elapsed Time.
 2. Processes Information: clone, execve and exit etc.
 3. File I/O: open, read, write and delete etc.
@@ -34,7 +34,7 @@ The tool can be used for the static and dynamic analysis of ELF files on the Lin
 6. API Information: getpid, system, dup and other libc functions.
 7. syscall sequences.
 
-##Screenshot
+## Screenshot
 1. The HTML report.
 
 ![png22](https://cloud.githubusercontent.com/assets/717403/21970024/c84605a4-dbdd-11e6-908f-a77fe0c3cc66.png)
@@ -43,7 +43,7 @@ The tool can be used for the static and dynamic analysis of ELF files on the Lin
 
 ![png21](https://cloud.githubusercontent.com/assets/717403/21969936/279f3b16-dbdd-11e6-944f-5694bf41681e.png)
 
-##Demo
+## Demo
 ### 1.Setup Enviroment
 
 The tool will run on the VirtualBox 5.1 with Ubuntu 14.04 LTS.
@@ -100,12 +100,12 @@ Among the result, `output.static` is static analysis result, `output.dynamic` is
 ![habo_01](https://cloud.githubusercontent.com/assets/717403/21971564/bb280f02-dbec-11e6-813b-fab6d63798b6.png)
 
 
-##Future Work
+## Future Work
 1. [done] Memory Analysis.
 2. More YARA rules (./utils/yara/malware/)
 3. [done] HTML output format
 
-##Errors and Issues
+## Errors and Issues
 1. Malware Analysis should be done inside a Virtual Machine enviroment and Intel-VT should be enabled on the host's BIOS. We shall not be liable to the damage of the analysed malware.
 2. VirtualBox 5.1 is recommended.
 3. The tool will also generate dynamic log, which contains one error message, for ELF files which can not be executed, such as so files.
@@ -114,15 +114,15 @@ Among the result, `output.static` is static analysis result, `output.dynamic` is
 
 #<a name="readme_cn">哈勃分析系统(HaboMalHunter)</a>
 
-##功能描述
+## 功能描述
 
 HaboMalHunter是[哈勃分析系统 (https://habo.qq.com) ](https://habo.qq.com)的开源子项目，用于Linux平台下进行自动化分析、文件安全性检测的开源工具。使用该工具能够帮助安全分析人员简洁高效的获取恶意样本的静态和动态行为特征。分析报告中提供了进程、文件、网络和系统调用等关键信息。
 
-##功能清单
+## 功能清单
 
 开源代码支持Linux x86/x64 平台上的ELF文件的自动化静态动态分析功能。
 
-###静态分析
+### 静态分析
 
 1. 基础信息：包括文件md5，名称，类型，大小和SSDEEP等信息。
 2. 依赖so信息：对于动态链接的文件，输出依赖的so信息。
@@ -132,7 +132,7 @@ HaboMalHunter是[哈勃分析系统 (https://habo.qq.com) ](https://habo.qq.com)
 6. ELF段信息，节信息和hash值
 7. 源文件名称
 
-###动态分析
+### 动态分析
 
 1. 动态运行启动结束信息：耗时等
 2. 进程信息：clone系统调用，execve调用，进程创建结束等
@@ -142,7 +142,7 @@ HaboMalHunter是[哈勃分析系统 (https://habo.qq.com) ](https://habo.qq.com)
 6. API信息：getpid, system, dup 等libc函数调用
 7. syscall 序列信息
 
-##Demo
+## Demo
 ### 1.环境配置
 
 使用哈勃Linux开源版进行病毒分析，需要首先制作用于运行病毒的虚拟机环境。切勿直接在真实环境下运行和分析病毒。项目默认使用VirtualBox 5.1 运行Ubuntu 14.04 LTS 作为分析环境。
