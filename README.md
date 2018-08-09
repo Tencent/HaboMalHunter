@@ -6,6 +6,8 @@
 [![Platform](https://img.shields.io/badge/Platform-Linux-brightgreen.svg)](https://github.com/Tencent/HaboMalHunter/wiki)
 
 (中文版本请参看[这里](#readme_cn))
+## 参与贡献
+[腾讯开源激励计划](https://opensource.tencent.com/contribution) 鼓励开发者的参与和贡献，期待你的加入。
 
 ## Introduction
 
