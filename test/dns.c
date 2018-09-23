@@ -31,18 +31,49 @@ void error(const char *msg)
 
 int main(int argc, char *argv[])
 {
-    char buff[20];
-    int sockfd, portno, n;
-    struct sockaddr_in serv_addr;
-    struct hostent *server;
-    server = gethostbyname(TARGET_HOST);
-    if (server == NULL) {
-        fprintf(stderr,"ERROR, no such host\n");
+    char buff[46];
+    struct sockaddr_in *sockaddr_ipv4;
+    struct addrinfo *result = NULL;
+    struct addrinfo *ptr = NULL;
+    struct addrinfo hints;
+
+    bzero(&hints, sizeof(hints));
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+    int ret = getaddrinfo(TARGET_HOST, NULL, &hints, &result);
+    if (ret) {
+        fprintf(stderr,"ERROR, no such ipv6 host\n");
         exit(0);
-    }else{
-        bzero(buff,sizeof(buff));
-        inet_ntop(server->h_addrtype,server->h_addr,buff,sizeof(buff)-1);
-        printf("ip: %s\n",buff);
+    } 
+
+    int i = 1;
+    for(ptr=result; ptr != NULL; ptr=ptr->ai_next) {
+
+        printf("getaddrinfo response %d\n", i++);
+        printf("\tFlags: 0x%x\n", ptr->ai_flags);
+        printf("\tFamily: ");
+        switch (ptr->ai_family) {
+            case AF_UNSPEC:
+                printf("Unspecified\n");
+                break;
+            case AF_INET:
+                printf("AF_INET (IPv4)\n");
+                sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
+                printf("\tIPv4 address %s\n", inet_ntoa(sockaddr_ipv4->sin_addr));
+                break;
+            case AF_INET6:
+                printf("AF_INET6 (IPv6)\n");
+                inet_ntop(AF_INET6, &(((struct sockaddr_in6 *)(ptr->ai_addr))->sin6_addr), buff, sizeof(buff));
+                printf("\tIPv6 address %s\n", buff);
+                break;
+            case AF_NETBIOS:
+                printf("AF_NETBIOS (NetBIOS)\n");
+                break;
+            default:
+                printf("Other %d\n", ptr->ai_family);
+                break;
+        }
     }
     return 0;
 }
