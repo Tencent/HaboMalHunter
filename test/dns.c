@@ -19,7 +19,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>
-
+#include <errno.h>
 #define TARGET_HOST "qq.com"
 #define TARGET_PORT 22
 #define HELLO_MSG "Hello world"
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     hints.ai_protocol = IPPROTO_TCP;
     int ret = getaddrinfo(TARGET_HOST, NULL, &hints, &result);
     if (ret) {
-        fprintf(stderr,"ERROR, no such ipv6 host\n");
+        fprintf(stderr,"getaddrinfo ERROR %d\n",errno);
         exit(0);
     } 
 
