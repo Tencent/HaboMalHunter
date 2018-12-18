@@ -30,7 +30,7 @@ def Popen(cmd, shell = False):
     stdout = ""
     stderr = ""
     try:
-        proc = subprocess.Popen(cmd, shell = shell, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        proc = subprocess.Popen(cmd, shell = shell)
         (stdout, stderr) = proc.communicate()
     except subprocess.CalledProcessError as e:
         stderr = e.output
@@ -54,6 +54,11 @@ def enable_logging(name, output_path):
     logger.addHandler(fileHandler)
     logger.addHandler(consoleHandler)
     return logger
+
+def check_path(path):
+    if " " in path:
+        return "\"" + path + "\""
+    return path
 
 class VTUtil():
     @staticmethod
