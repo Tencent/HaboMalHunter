@@ -215,14 +215,27 @@ class FileInfo:
             return  'elf'
             
     def get_strings(self):
-        strings = Strings()
-        for s in strings:
-            self.string.append(str(s))
+        for s in Strings():
+            string = str(s)
+            if self.is_good_string(string):
+                self.string.append(string)
+            else:
+                self.string.append(StringUtil.format_data_to_string(string, s.length))
         
     def get_functions(self):
         for func in Functions():
             name = GetFunctionName(func)
-            self.function.append(str(name))
+            if self.is_good_string(str(name)):
+                self.function.append(str(name))
+            else:
+                self.function.append(StringUtil.format_data_to_string(str(name), name.length))
+    
+    def is_good_string(self, string):
+        try:
+            string.encode('utf-8')
+        except:
+            return False
+        return True
         
 def dump_json(json_path, file_obj, plugin_obj):
     if file_obj == None:
@@ -259,7 +272,7 @@ def dump_json(json_path, file_obj, plugin_obj):
             suspicious_string = [],
             bot_command = [],
             other_info = [],
-            detect = ENUM_DETECT_RESULT["UNKNOW"],
+            detect = ENUM_DETECT_RESULT["UNKNOWN"],
             virus_name = ""
         ))
     else:
@@ -286,13 +299,8 @@ def dump_json(json_path, file_obj, plugin_obj):
         ))
     
     with open(json_path, "a+") as f:
-        try:
-            f.write(json.dumps(all_info))
-        except UnicodeDecodeError:
-            f.write(json.dumps(all_info, ensure_ascii=False))
-        finally:
-            f.write("\n")
-#    json.dump(all_info, open(json_path, "w+"), ensure_ascii=False)
+        f.write(json.dumps(all_info))
+        f.write("\n")
 
 def analyze(plugin_path, output_dir, sample_path, packer):
     # Analyze file detail info

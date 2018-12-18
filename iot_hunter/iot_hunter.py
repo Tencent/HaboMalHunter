@@ -125,7 +125,7 @@ def execute_ida(sample_path, output_dir, packer):
     plugin_path = os.path.join(os.getcwd(), IDA_PLUGINS_DIR_NAME)
 
     # execute IDA
-    cmd_ida = r"%s -c -A -S'%s %s %s %s' %s" % (IDA_EXECUTABLE_FILE_PATH, ida_python_script_path, plugin_path, output_dir, packer, sample_path)
+    cmd_ida = r'%s -c -A -S"%s %s %s %s" %s' % (check_path(IDA_EXECUTABLE_FILE_PATH), check_path(ida_python_script_path), check_path(plugin_path), check_path(output_dir), packer, check_path(sample_path))
     try:
         stdout, stderr = Popen(cmd_ida, shell = True)
         if stderr != None:

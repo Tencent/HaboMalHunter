@@ -101,7 +101,7 @@ class ElasticSearchUtil():
 
 def main():
     parser = argparse.ArgumentParser(description = 'Import Data Tool for Elasticsearch.')
-    parser.add_argument('-r', dest='result_file_path', default=None, help='load analysis result info to elasticsearch, ')
+    parser.add_argument('-r', dest='result_file_path', default=None, help='load analysis result info to elasticsearch')
     parser.add_argument('-o', dest='output_dir', default=None, help='output folder path for log files,use RESULT_OUTPUT_DIR as default in conf.py.')
     args = parser.parse_args()
     
