@@ -119,7 +119,7 @@ def pkt_handle(pkt):
 			pass	
 	return is_accept
 
-def process(i, payload):
+def process(payload):
 	data = payload.get_data()
 	pkt = IP(data)
 	#pkt.show() 
